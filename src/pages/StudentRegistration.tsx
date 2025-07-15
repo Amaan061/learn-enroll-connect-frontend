@@ -39,8 +39,8 @@ export default function StudentRegistration() {
 
   const { data: filteredOfferings = [] } = useQuery({
     queryKey: ['filteredOfferings', selectedCourseType],
-    queryFn: () => selectedCourseType ? api.registrations.getOfferingsByType(selectedCourseType) : [],
-    enabled: !!selectedCourseType
+    queryFn: () => selectedCourseType && selectedCourseType !== "all" ? api.registrations.getOfferingsByType(selectedCourseType) : [],
+    enabled: !!selectedCourseType && selectedCourseType !== "all"
   })
 
   const { data: registrations = [] } = useQuery<StudentRegistrationType[]>({
@@ -99,7 +99,7 @@ export default function StudentRegistration() {
     return `${courseName} - ${courseTypeName}`
   }
 
-  const displayOfferings = selectedCourseType ? filteredOfferings : courseOfferings
+  const displayOfferings = selectedCourseType && selectedCourseType !== "all" ? filteredOfferings : courseOfferings
 
   return (
     <div className="space-y-6">
@@ -184,7 +184,7 @@ export default function StudentRegistration() {
                       <SelectValue placeholder="Filter by course type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Course Types</SelectItem>
+                      <SelectItem value="all">All Course Types</SelectItem>
                       {courseTypes.map((courseType) => (
                         <SelectItem key={courseType._id} value={courseType._id}>
                           {courseType.name}
