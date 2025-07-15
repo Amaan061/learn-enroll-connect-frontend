@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is the frontend for the Learn Enroll Connect platform, built with React, Vite, TypeScript, shadcn-ui, and Tailwind CSS.
+This is the frontend for the Learn Enroll Connect platform, built with React and Tailwind CSS.
 
 **Live Site:** [https://learn-enroll-connect-frontend.onrender.com](https://learn-enroll-connect-frontend.onrender.com)
 
